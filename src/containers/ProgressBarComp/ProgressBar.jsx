@@ -1,6 +1,7 @@
 import React from "react";
+import{Flex,Box} from '@rebass/grid';
 
-class ProgressBarComp2 extends React.Component {
+class ProgressBar extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -76,11 +77,19 @@ class ProgressBarComp2 extends React.Component {
         const {show}=this.props;
 
         const containerStyles = {
-            height: 20,
-            width: '700px',
+            height: 40,
             backgroundColor: "grey",
             borderRadius: 50,
-            margin: 50,
+            marginLeft: 150,
+            marginRight: 150,
+            marginBottom:50,
+            textAlign: 'center'
+          }
+
+          const buttonStyles = {
+            height: 50,
+            width: 70,
+            backgroundColor: "yellow",
             textAlign: 'center'
           }
         
@@ -130,14 +139,18 @@ class ProgressBarComp2 extends React.Component {
                     <span style={labelStyles}>{this.state.width3 + '%'}</span>
                 </div><br/>
             </div>
-            <button onClick={(e) => { this.handleClickDec(e,25,show); }}>-25</button>&nbsp;     
-            <button onClick={(e) => { this.handleClickDec(e,10,show); }}>-10</button>&nbsp;   
-            <button onClick={(e) => { this.handleClickInc(e,10,show); }}>+10</button>&nbsp;            
-            <button onClick={(e) => { this.handleClickInc(e,25,show); }}>+25</button>&nbsp;            
+            <Flex flexDirection="row">
+                <Box flex="1">
+                    <button style={buttonStyles} onClick={(e) => { this.handleClickDec(e,25,show); }}>-25</button>&nbsp;     
+                    <button style={buttonStyles} onClick={(e) => { this.handleClickDec(e,10,show); }}>-10</button>&nbsp;   
+                    <button style={buttonStyles} onClick={(e) => { this.handleClickInc(e,10,show); }}>+10</button>&nbsp;            
+                    <button style={buttonStyles} onClick={(e) => { this.handleClickInc(e,25,show); }}>+25</button>&nbsp; 
+                </Box>
+            </Flex>
         </React.Fragment>
       );
     }
 
   }
 
-  export default ProgressBarComp2;
+  export default ProgressBar;

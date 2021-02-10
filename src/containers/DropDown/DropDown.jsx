@@ -1,51 +1,39 @@
 import React from "react";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import {ProgressBarComp} from '../ProgressBarComp/index';
-class DropDown extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      enabled: ''
-    };    
-  }
-  render() {
-const options = [
-  { value: 'one', label: '#Progress1' },
-  { value: 'two', label: '#Progress2' }
-  ];
-  
-  
-const setProgressBar=(e)=> {
-  if(e.value==='one') {
-    this.setState(state=>{
-      return{enabled:state.enabled='progress1'};
-  })}
-  else {
-    this.setState(state=>{
-      return{enabled:state.enabled='progress2'};
-  })}
-};
-const styleDropDown = {
-  width: '100%',
-  background: "green"
-};
+import{Flex} from '@rebass/grid';
+import {ProgressBar} from '../ProgressBarComp/index';
 
-  return(
-    <div>      
-    <Dropdown 
-    style={styleDropDown}
-    name="abc"
-    options={options} 
-    onChange={setProgressBar}
-    value={options.value} 
-    placeholder="Select an option" />
-    <ProgressBarComp
-    show ={this.state.enabled}
-    />
-    </div>
-  );
-  }
-}
+class DropDown extends React.Component {
 
+    constructor(props) {
+      super(props);
+      this.state = {value: 'progress1'};  
+      this.handleChange = this.handleChange.bind(this);
+    }
+  
+    handleChange(event) {
+      this.setState({value: event.target.value});
+    }
+    
+    render() {
+        const dropDownStyles = {
+          height: 50,
+          width: 100,
+          marginBottom:20,
+          marginTop:20,
+          backgroundColor: "orange",
+          }
+      return (
+        <Flex flexDirection="column">
+            <h1 ><strong> Progress Bars Demo</strong><br/>
+                <select style={dropDownStyles} value={this.state.value} onChange={this.handleChange}>
+                <option value="progress1">#Progress1</option>
+                <option value="progress2">#Progress2</option>
+                <option value="progress3">#Progress3</option>
+                </select>   
+            </h1>     
+         <ProgressBar show ={this.state.value}/>
+         </Flex>
+      );
+    }
+  }
 export default DropDown;
