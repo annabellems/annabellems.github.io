@@ -1,0 +1,12 @@
+.item {
+    margin: 1rem 0;
+    background-color: #c5a9c4;
+    padding: 1rem;
+  } 
+  
+  .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
